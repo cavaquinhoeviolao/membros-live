@@ -4,12 +4,19 @@
   <meta charset="UTF-8">
   <title>Membros do Canal</title>
   <style>
-    body { background: transparent; font-family: sans-serif; }
-    .membro { font-size: 24px; margin: 10px; font-weight: bold; }
+    body {
+      background: transparent;
+      font-family: sans-serif;
+      color: white;
+    }
+    .membro {
+      font-size: 20px;
+      margin: 5px 0;
+      font-weight: bold;
+    }
     .bronze { color: #cd7f32; }
     .prata { color: #c0c0c0; }
     .ouro { color: #ffd700; }
-    .fogo { color: #ff4500; }
   </style>
 </head>
 <body>
@@ -17,24 +24,62 @@
 
   <script>
     const membros = [
-      { nome: "Willian", categoria: "Palheta de Ouro" },
-      { nome: "Ana", categoria: "Palheta de Prata" },
-      { nome: "João", categoria: "Palheta de Bronze", tempo: "2 meses" },
-      { nome: "Carlos", categoria: "Palheta de Fogo" }
+      { nome: "Eduardo Jesus", categoria: "Palheta de Bronze", tempo: "2 meses" },
+      { nome: "Ricardo Antonio Dos Santos", categoria: "Palheta de Bronze", tempo: "1 mês" },
+      { nome: "Luis Claudio Fidelis Fidelis", categoria: "Palheta de Bronze", tempo: "6 dias" },
+      { nome: "Lucinio Faria Neto", categoria: "Palheta de Prata", tempo: "10 dias" },
+      { nome: "Pedro Macedo", categoria: "Palheta de Bronze", tempo: "11 dias" },
+      { nome: "Marcos Sussa", categoria: "Palheta de Prata", tempo: "1 mês" },
+      { nome: "Junior Timao", categoria: "Palheta de Bronze", tempo: "29 meses" },
+      { nome: "Erivelto Batista", categoria: "Palheta de Bronze", tempo: "26 dias" },
+      { nome: "Luiz Martins", categoria: "Palheta de Prata", tempo: "8 meses" },
+      { nome: "Giovanna", categoria: "Palheta de Prata", tempo: "1 mês" },
+      { nome: "Hamilton Mor", categoria: "Palheta de Bronze", tempo: "20 meses" },
+      { nome: "Vitor", categoria: "Palheta de Bronze", tempo: "3 meses" },
+      { nome: "Gelson Moreira", categoria: "Palheta de Prata", tempo: "4 meses" },
+      { nome: "Jesiel Gênesis", categoria: "Palheta de Bronze", tempo: "19 meses" },
+      { nome: "Alvaro Costa", categoria: "Palheta de Bronze", tempo: "14 meses" },
+      { nome: "Everton Jorge", categoria: "Palheta de Prata", tempo: "6 meses" },
+      { nome: "Ícaro", categoria: "Palheta de Bronze", tempo: "3 meses" },
+      { nome: "Junior Jr", categoria: "Palheta de Prata", tempo: "5 meses" },
+      { nome: "Bruno Rodrigues Imóveis", categoria: "Palheta de Bronze", tempo: "5 meses" },
+      { nome: "Clark Rocha", categoria: "Palheta de Bronze", tempo: "33 meses" },
+      { nome: "Steferson Siqueira", categoria: "Palheta de Bronze", tempo: "6 meses" },
+      { nome: "Pintaroxa Mancha", categoria: "Palheta de Prata", tempo: "6 meses" },
+      { nome: "Paulo Henrique Gonçalves Silva", categoria: "Palheta de Bronze", tempo: "7 meses" },
+      { nome: "Alandson Lemos", categoria: "Palheta de Bronze", tempo: "8 meses" },
+      { nome: "Maqui Rivero", categoria: "Palheta de Ouro", tempo: "8 meses" },
+      { nome: "Daniel K", categoria: "Palheta de Bronze", tempo: "18 meses" },
+      { nome: "Júnior 001", categoria: "Palheta de Bronze", tempo: "11 meses" },
+      { nome: "Yuri Santos", categoria: "Palheta de Bronze", tempo: "11 meses" },
+      { nome: "Paulo Costa", categoria: "Palheta de Bronze", tempo: "11 meses" },
+      { nome: "Du Higashi", categoria: "Palheta de Bronze", tempo: "11 meses" },
+      { nome: "Marcos Azambuja", categoria: "Palheta de Bronze", tempo: "12 meses" },
+      { nome: "Maurício Ribeiro Bispo", categoria: "Palheta de Bronze", tempo: "12 meses" },
+      { nome: "Leandro Mello", categoria: "Palheta de Bronze", tempo: "26 meses" },
+      { nome: "Jesse Junior", categoria: "Palheta de Bronze", tempo: "30 meses" },
+      { nome: "Maikon Hebert Silva", categoria: "Palheta de Bronze", tempo: "30 meses" },
+      { nome: "Romildo Porcher", categoria: "Palheta de Bronze", tempo: "36 meses" },
+      { nome: "Wellington Costa", categoria: "Palheta de Bronze", tempo: "50 meses" }
     ];
 
-    let html = "";
-    membros.forEach(m => {
-      let cor = "";
-      if (m.categoria.includes("Bronze")) cor = "bronze";
-      else if (m.categoria.includes("Prata")) cor = "prata";
-      else if (m.categoria.includes("Ouro")) cor = "ouro";
-      else if (m.categoria.includes("Fogo")) cor = "fogo";
+    const container = document.getElementById("membros");
 
-      html += `<div class="membro ${cor}">${m.nome} ${m.tempo ? "- " + m.tempo : ""}</div>`;
+    membros.forEach(membro => {
+      const div = document.createElement("div");
+      div.classList.add("membro");
+
+      if (membro.categoria.includes("Bronze")) {
+        div.classList.add("bronze");
+      } else if (membro.categoria.includes("Prata")) {
+        div.classList.add("prata");
+      } else if (membro.categoria.includes("Ouro")) {
+        div.classList.add("ouro");
+      }
+
+      div.textContent = `${membro.nome} - ${membro.categoria} (${membro.tempo})`;
+      container.appendChild(div);
     });
-
-    document.getElementById("membros").innerHTML = html;
   </script>
 </body>
 </html>
