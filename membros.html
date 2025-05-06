@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Membros do Canal</title>
+  <style>
+    body { background: transparent; font-family: sans-serif; }
+    .membro { font-size: 24px; margin: 10px; font-weight: bold; }
+    .bronze { color: #cd7f32; }
+    .prata { color: #c0c0c0; }
+    .ouro { color: #ffd700; }
+    .fogo { color: #ff4500; }
+  </style>
+</head>
+<body>
+  <div id="membros"></div>
+
+  <script>
+    const membros = [
+      { nome: "Willian", categoria: "Palheta de Ouro" },
+      { nome: "Ana", categoria: "Palheta de Prata" },
+      { nome: "João", categoria: "Palheta de Bronze", tempo: "2 meses" },
+      { nome: "Carlos", categoria: "Palheta de Fogo" }
+    ];
+
+    let html = "";
+    membros.forEach(m => {
+      let cor = "";
+      if (m.categoria.includes("Bronze")) cor = "bronze";
+      else if (m.categoria.includes("Prata")) cor = "prata";
+      else if (m.categoria.includes("Ouro")) cor = "ouro";
+      else if (m.categoria.includes("Fogo")) cor = "fogo";
+
+      html += `<div class="membro ${cor}">${m.nome} ${m.tempo ? "- " + m.tempo : ""}</div>`;
+    });
+
+    document.getElementById("membros").innerHTML = html;
+  </script>
+</body>
+</html>
