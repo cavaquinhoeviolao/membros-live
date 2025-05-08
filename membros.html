@@ -5,23 +5,35 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <style>
     body {
-      background-color: #111;
+      background-color: transparent;
       color: white;
       font-family: sans-serif;
-      padding: 20px;
+      padding: 0;
+      margin: 0;
     }
+
     .membro {
       display: flex;
       align-items: center;
-      margin-bottom: 2px; /* entrelinha menor */
+      margin-bottom: 2px;
     }
+
     .membro img {
       width: 20px;
       height: 20px;
-      margin-right: 10px;
+      margin-right: 4px; /* menor espaço entre palheta e nome */
+      margin-left: 0; /* sem margem à esquerda */
     }
+
     .nome {
-      margin-right: 10px;
+      margin-right: 8px; /* nome mais próximo da palheta */
+      font-weight: bold;
+      white-space: nowrap;
+    }
+
+    .meses {
+      min-width: 24px;
+      text-align: right; /* alinha à direita */
       font-weight: bold;
     }
   </style>
@@ -40,6 +52,7 @@
       { nome: "Leandro Mello", categoria: "Palheta de Bronze", meses: 26 },
       { nome: "Daniel K", categoria: "Palheta de Bronze", meses: 18 },
       { nome: "Jesiel Gênesis", categoria: "Palheta de Bronze", meses: 19 },
+      { nome: "Hamilton Mor", categoria: "Palheta de Bronze", meses: 20 },
       { nome: "Alvaro Costa", categoria: "Palheta de Bronze", meses: 14 },
       { nome: "Marcos Azambuja", categoria: "Palheta de Bronze", meses: 12 },
       { nome: "Maurício Ribeiro Bispo", categoria: "Palheta de Bronze", meses: 12 },
@@ -57,7 +70,6 @@
       { nome: "Luis claudio fidelis fidelis", categoria: "Palheta de Bronze", meses: 0 },
       { nome: "Pedro macedo", categoria: "Palheta de Bronze", meses: 0 },
       { nome: "Erivelto Batista", categoria: "Palheta de Bronze", meses: 0 },
-      { nome: "Hamilton Mor", categoria: "Palheta de Bronze", meses: 20 },
       { nome: "Lucinio faria neto", categoria: "Palheta de prata", meses: 0 },
       { nome: "Marcos Sussa", categoria: "Palheta de prata", meses: 1 },
       { nome: "Luiz Martins", categoria: "Palheta de prata", meses: 8 },
@@ -110,22 +122,24 @@
 
     const container = document.getElementById("lista-membros");
 
-    membros
-      .filter(m => m.meses !== null) // Exclui membros secretos da ordenação
-      .sort((a, b) => b.meses - a.meses)
-      .concat(membros.filter(m => m.meses === null)) // Adiciona membros secretos ao final
-      .forEach(m => {
-        const { cor, badge } = getCorEBadge(m);
-        const mesesTexto = m.meses === null ? "–" : m.meses;
-        const membroDiv = document.createElement("div");
-        membroDiv.className = "membro";
-        membroDiv.innerHTML = `
-          <img src="${badge}" alt="Palheta" />
-          <span class="nome" style="color: ${cor}">${abreviarNome(m.nome)}</span>
-          <span style="color: ${cor}">${mesesTexto}</span>
-        `;
-        container.appendChild(membroDiv);
-      });
+    const membrosOrdenados = [
+      ...membros.filter(m => m.nome === "Mr. Eduardo"), // primeiro
+      ...membros.filter(m => m.nome !== "Mr. Eduardo" && m.meses !== null).sort((a, b) => b.meses - a.meses),
+      ...membros.filter(m => m.meses === null && m.nome !== "Mr. Eduardo")
+    ];
+
+    membrosOrdenados.forEach(m => {
+      const { cor, badge } = getCorEBadge(m);
+      const mesesTexto = m.meses === null ? "?" : m.meses;
+      const membroDiv = document.createElement("div");
+      membroDiv.className = "membro";
+      membroDiv.innerHTML = `
+        <img src="${badge}" alt="Palheta" />
+        <span class="nome" style="color: ${cor}">${abreviarNome(m.nome)}</span>
+        <span class="meses" style="color: ${cor}">${mesesTexto}</span>
+      `;
+      container.appendChild(membroDiv);
+    });
   </script>
 </body>
 </html>
