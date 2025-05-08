@@ -4,35 +4,34 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <style>
-  body {
-    background-color: #111;
-    color: white;
-    font-family: sans-serif;
-    padding: 20px;
-  }
-  .membro {
-    display: flex;
-    align-items: center;
-    margin-bottom: 4px;
-  }
-  .membro img {
-    width: 25px;  /* Novo tamanho das imagens */
-    height: 25px; /* Ajuste conforme necessário */
-    margin-right: 10px;
-  }
-  .nome {
-    margin-right: 10px;
-    font-weight: bold;
-  }
-</style>
+    body {
+      background-color: #111;
+      color: white;
+      font-family: sans-serif;
+      padding: 20px;
+    }
+    .membro {
+      display: flex;
+      align-items: center;
+      margin-bottom: 2px; /* entrelinha menor */
+    }
+    .membro img {
+      width: 25px;
+      height: 25px;
+      margin-right: 10px;
+    }
+    .nome {
+      margin-right: 10px;
+      font-weight: bold;
+    }
+  </style>
 </head>
 <body>
-  <h1>Membros do Canal</h1>
   <div id="lista-membros"></div>
 
   <script>
     const membros = [
-      { nome: "Mr. Eduardo", categoria: "Palheta de Fogo", meses: ? }
+      { nome: "Mr. Eduardo", categoria: "Palheta de Fogo", meses: null },
       { nome: "Wellington Costa", categoria: "Palheta de Bronze", meses: 50 },
       { nome: "Romildo Porcher", categoria: "Palheta de Bronze", meses: 36 },
       { nome: "Jesse Junior", categoria: "Palheta de Bronze", meses: 30 },
@@ -68,21 +67,14 @@
       { nome: "Junior Jr", categoria: "Palheta de prata", meses: 5 },
       { nome: "Pintaroxa Mancha", categoria: "Palheta de prata", meses: 6 },
       { nome: "Maqui Rivero", categoria: "Palheta de Ouro", meses: 8 },
-      { nome: "Zeca", categoria: "Palheta de Fogo", meses: 6 }
-      { nome: "Lincoln Jr.", categoria: "Palheta de Fogo", meses: 8 }
+      { nome: "Zeca", categoria: "Palheta de Fogo", meses: 6 },
+      { nome: "Lincoln Jr.", categoria: "Palheta de Fogo", meses: 8 },
       { nome: "Bruno Breve", categoria: "Palheta de Fogo", meses: 8 }
     ];
 
     const palhetaBronzeCores = [
-      "#FF6347", // 0 meses
-      "#FFA500", // 1 mês
-      "#FFD700", // 2 meses
-      "#32CD32", // 6 meses
-      "#1E90FF", // 12 meses
-      "#9370DB", // 24 meses
-      "#8A2BE2", // 36 meses
-      "#00CED1", // 48 meses
-      "#7B68EE"  // 60+ meses
+      "#FF6347", "#FFA500", "#FFD700", "#32CD32",
+      "#1E90FF", "#9370DB", "#8A2BE2", "#00CED1", "#7B68EE"
     ];
 
     function getCorEBadge(membro) {
@@ -98,23 +90,14 @@
         let cor = palhetaBronzeCores[0];
         let badge = "palheta_0.png";
 
-        if (meses >= 60) {
-          cor = palhetaBronzeCores[8]; badge = "palheta_60.png";
-        } else if (meses >= 48) {
-          cor = palhetaBronzeCores[7]; badge = "palheta_48.png";
-        } else if (meses >= 36) {
-          cor = palhetaBronzeCores[6]; badge = "palheta_36.png";
-        } else if (meses >= 24) {
-          cor = palhetaBronzeCores[5]; badge = "palheta_24.png";
-        } else if (meses >= 12) {
-          cor = palhetaBronzeCores[4]; badge = "palheta_12.png";
-        } else if (meses >= 6) {
-          cor = palhetaBronzeCores[3]; badge = "palheta_6.png";
-        } else if (meses >= 2) {
-          cor = palhetaBronzeCores[2]; badge = "palheta_2.png";
-        } else if (meses >= 1) {
-          cor = palhetaBronzeCores[1]; badge = "palheta_1.png";
-        }
+        if (meses >= 60) { cor = palhetaBronzeCores[8]; badge = "palheta_60.png"; }
+        else if (meses >= 48) { cor = palhetaBronzeCores[7]; badge = "palheta_48.png"; }
+        else if (meses >= 36) { cor = palhetaBronzeCores[6]; badge = "palheta_36.png"; }
+        else if (meses >= 24) { cor = palhetaBronzeCores[5]; badge = "palheta_24.png"; }
+        else if (meses >= 12) { cor = palhetaBronzeCores[4]; badge = "palheta_12.png"; }
+        else if (meses >= 6) { cor = palhetaBronzeCores[3]; badge = "palheta_6.png"; }
+        else if (meses >= 2) { cor = palhetaBronzeCores[2]; badge = "palheta_2.png"; }
+        else if (meses >= 1) { cor = palhetaBronzeCores[1]; badge = "palheta_1.png"; }
 
         return { cor, badge };
       }
@@ -125,20 +108,24 @@
       return partes.length === 1 ? partes[0] : `${partes[0]} ${partes[1][0]}.`;
     }
 
-    membros.sort((a, b) => b.meses - a.meses);
-
     const container = document.getElementById("lista-membros");
-    membros.forEach(m => {
-      const { cor, badge } = getCorEBadge(m);
-      const membroDiv = document.createElement("div");
-      membroDiv.className = "membro";
-      membroDiv.innerHTML = `
-        <img src="${badge}" alt="Palheta" />
-        <span class="nome" style="color: ${cor}">${abreviarNome(m.nome)}</span>
-        <span style="color: ${cor}">${m.meses}</span>
-      `;
-      container.appendChild(membroDiv);
-    });
+
+    membros
+      .filter(m => m.meses !== null) // Exclui membros secretos da ordenação
+      .sort((a, b) => b.meses - a.meses)
+      .concat(membros.filter(m => m.meses === null)) // Adiciona membros secretos ao final
+      .forEach(m => {
+        const { cor, badge } = getCorEBadge(m);
+        const mesesTexto = m.meses === null ? "–" : m.meses;
+        const membroDiv = document.createElement("div");
+        membroDiv.className = "membro";
+        membroDiv.innerHTML = `
+          <img src="${badge}" alt="Palheta" />
+          <span class="nome" style="color: ${cor}">${abreviarNome(m.nome)}</span>
+          <span style="color: ${cor}">${mesesTexto}</span>
+        `;
+        container.appendChild(membroDiv);
+      });
   </script>
 </body>
 </html>
