@@ -13,11 +13,11 @@
   .membro {
     display: flex;
     align-items: center;
-    margin-bottom: 10px;
+    margin-bottom: 4px;
   }
   .membro img {
-    width: 30px;  /* Novo tamanho das imagens */
-    height: 30px; /* Ajuste conforme necessário */
+    width: 25px;  /* Novo tamanho das imagens */
+    height: 25px; /* Ajuste conforme necessário */
     margin-right: 10px;
   }
   .nome {
@@ -135,7 +135,7 @@
       membroDiv.innerHTML = `
         <img src="${badge}" alt="Palheta" />
         <span class="nome" style="color: ${cor}">${abreviarNome(m.nome)}</span>
-        <span>${m.meses}</span>
+        <span style="color: ${cor}">${m.meses}</span>
       `;
       container.appendChild(membroDiv);
     });
