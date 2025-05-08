@@ -15,25 +15,30 @@
     .membro {
       display: flex;
       align-items: center;
+      justify-content: space-between;
       margin-bottom: 2px;
+      width: 300px;
+    }
+
+    .membro-left {
+      display: flex;
+      align-items: center;
     }
 
     .membro img {
       width: 20px;
       height: 20px;
-      margin-right: 4px; /* menor espaço entre palheta e nome */
-      margin-left: 0; /* sem margem à esquerda */
+      margin-right: 4px;
     }
 
     .nome {
-      margin-right: 8px; /* nome mais próximo da palheta */
       font-weight: bold;
       white-space: nowrap;
     }
 
     .meses {
-      min-width: 24px;
-      text-align: right; /* alinha à direita */
+      min-width: 30px;
+      text-align: right;
       font-weight: bold;
     }
   </style>
@@ -71,13 +76,13 @@
       { nome: "Pedro macedo", categoria: "Palheta de Bronze", meses: 0 },
       { nome: "Erivelto Batista", categoria: "Palheta de Bronze", meses: 0 },
       { nome: "Lucinio faria neto", categoria: "Palheta de prata", meses: 0 },
-      { nome: "Marcos Sussa", categoria: "Palheta de Prata", meses: 1 },
-      { nome: "Luiz Martins", categoria: "Palheta de Prata", meses: 8 },
-      { nome: "Giovanna", categoria: "Palheta de Prata", meses: 1 },
-      { nome: "Gelson Moreira", categoria: "Palheta de Prata", meses: 4 },
-      { nome: "Everton jorge", categoria: "Palheta de Prata", meses: 6 },
-      { nome: "Junior Jr", categoria: "Palheta de Prata", meses: 5 },
-      { nome: "Pintaroxa Mancha", categoria: "Palheta de Prata", meses: 6 },
+      { nome: "Marcos Sussa", categoria: "Palheta de prata", meses: 1 },
+      { nome: "Luiz Martins", categoria: "Palheta de prata", meses: 8 },
+      { nome: "Giovanna", categoria: "Palheta de prata", meses: 1 },
+      { nome: "Gelson Moreira", categoria: "Palheta de prata", meses: 4 },
+      { nome: "Everton jorge", categoria: "Palheta de prata", meses: 6 },
+      { nome: "Junior Jr", categoria: "Palheta de prata", meses: 5 },
+      { nome: "Pintaroxa Mancha", categoria: "Palheta de prata", meses: 6 },
       { nome: "Maqui Rivero", categoria: "Palheta de Ouro", meses: 8 },
       { nome: "Zeca", categoria: "Palheta de Fogo", meses: 6 },
       { nome: "Lincoln Jr.", categoria: "Palheta de Fogo", meses: 8 },
@@ -92,7 +97,7 @@
     function getCorEBadge(membro) {
       const meses = membro.meses;
 
-      if (membro.categoria === "Palheta de Prata") {
+      if (membro.categoria.toLowerCase() === "palheta de prata") {
         return { cor: "#cccccc", badge: "palheta_prata.png" };
       } else if (membro.categoria === "Palheta de Ouro") {
         return { cor: "#FFD700", badge: "palheta_ouro.png" };
@@ -123,7 +128,7 @@
     const container = document.getElementById("lista-membros");
 
     const membrosOrdenados = [
-      ...membros.filter(m => m.nome === "Mr. Eduardo"), // primeiro
+      ...membros.filter(m => m.nome === "Mr. Eduardo"),
       ...membros.filter(m => m.nome !== "Mr. Eduardo" && m.meses !== null).sort((a, b) => b.meses - a.meses),
       ...membros.filter(m => m.meses === null && m.nome !== "Mr. Eduardo")
     ];
@@ -134,8 +139,10 @@
       const membroDiv = document.createElement("div");
       membroDiv.className = "membro";
       membroDiv.innerHTML = `
-        <img src="${badge}" alt="Palheta" />
-        <span class="nome" style="color: ${cor}">${abreviarNome(m.nome)}</span>
+        <div class="membro-left">
+          <img src="${badge}" alt="Palheta" />
+          <span class="nome" style="color: ${cor}">${abreviarNome(m.nome)}</span>
+        </div>
         <span class="meses" style="color: ${cor}">${mesesTexto}</span>
       `;
       container.appendChild(membroDiv);
