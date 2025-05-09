@@ -1,5 +1,5 @@
 [
-      { nome: "Mr. Eduardo", categoria: "Palheta de Fogo", meses: null },
+      { nome: "Mr._Eduardo", categoria: "Palheta de Fogo", meses: null },
       { nome: "Wellington Costa", categoria: "Palheta de Bronze", meses: 50 },
       { nome: "Romildo Porcher", categoria: "Palheta de Bronze", meses: 36 },
       { nome: "Jesse Junior", categoria: "Palheta de Bronze", meses: 30 },
