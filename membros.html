@@ -20,12 +20,21 @@
       width: 160px;
       opacity: 0;
       transform: translateY(-20px);
-      transition: opacity 0.4s ease, transform 0.4s ease;
+      animation: fadeDown 0.5s ease forwards;
     }
 
-    .membro.show {
-      opacity: 1;
-      transform: translateY(0);
+    .membro:nth-child(1) { animation-delay: 0.1s; }
+    .membro:nth-child(2) { animation-delay: 0.2s; }
+    .membro:nth-child(3) { animation-delay: 0.3s; }
+    .membro:nth-child(4) { animation-delay: 0.4s; }
+    .membro:nth-child(5) { animation-delay: 0.5s; }
+    /* Adicione mais se quiser atrasos mais longos */
+
+    @keyframes fadeDown {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     .membro-left {
@@ -55,7 +64,12 @@
   <div id="lista-membros"></div>
 
   <script>
-    const membros = [ /* mesma lista de membros */ ];
+    const membros = [
+      { nome: "Eduardo", categoria: "Palheta de Fogo", meses: null },
+      { nome: "Wellington Costa", categoria: "Palheta de Bronze", meses: 50 },
+      { nome: "Romildo Porcher", categoria: "Palheta de Bronze", meses: 36 },
+      // Adicione os demais membros aqui...
+    ];
 
     const palhetaBronzeCores = [
       "#FF7961", "#FFA500", "#F3CF3E", "#56D68C",
@@ -64,6 +78,7 @@
 
     function getCorEBadge(membro) {
       const meses = membro.meses;
+
       if (membro.categoria.toLowerCase() === "palheta de prata") {
         return { cor: "#cccccc", badge: "palheta_prata.png" };
       } else if (membro.categoria === "Palheta de Ouro") {
@@ -73,6 +88,7 @@
       } else {
         let cor = palhetaBronzeCores[0];
         let badge = "palheta_0.png";
+
         if (meses >= 60) { cor = palhetaBronzeCores[8]; badge = "palheta_60.png"; }
         else if (meses >= 48) { cor = palhetaBronzeCores[7]; badge = "palheta_48.png"; }
         else if (meses >= 36) { cor = palhetaBronzeCores[6]; badge = "palheta_36.png"; }
@@ -81,31 +97,33 @@
         else if (meses >= 6) { cor = palhetaBronzeCores[3]; badge = "palheta_6.png"; }
         else if (meses >= 2) { cor = palhetaBronzeCores[2]; badge = "palheta_2.png"; }
         else if (meses >= 1) { cor = palhetaBronzeCores[1]; badge = "palheta_1.png"; }
+
         return { cor, badge };
       }
     }
 
     function abreviarNome(nome) {
-      if (nome.trim().toLowerCase() === "mr. eduardo") return "Mr. Eduardo";
+      if (nome === "Eduardo") return "Eduardo"; // Exceção para ele
       const partes = nome.trim().split(" ");
       return partes.length === 1 ? partes[0] : `${partes[0]} ${partes[1][0]}.`;
     }
 
-    const container = document.getElementById("lista-membros");
+    function exibirMembros() {
+      const container = document.getElementById("lista-membros");
+      container.innerHTML = ""; // limpa a lista
 
-    const membrosOrdenados = [
-      ...membros.filter(m => m.nome === "Mr. Eduardo"),
-      ...membros.filter(m => m.nome !== "Mr. Eduardo" && m.meses !== null).sort((a, b) => b.meses - a.meses),
-      ...membros.filter(m => m.meses === null && m.nome !== "Mr. Eduardo")
-    ];
+      const membrosOrdenados = [
+        ...membros.filter(m => m.nome === "Eduardo"),
+        ...membros.filter(m => m.nome !== "Eduardo" && m.meses !== null).sort((a, b) => b.meses - a.meses),
+        ...membros.filter(m => m.meses === null && m.nome !== "Eduardo")
+      ];
 
-    function criarLista() {
-      container.innerHTML = "";
       membrosOrdenados.forEach((m, index) => {
         const { cor, badge } = getCorEBadge(m);
         const mesesTexto = m.meses === null ? "💀" : m.meses;
         const membroDiv = document.createElement("div");
         membroDiv.className = "membro";
+        membroDiv.style.animationDelay = `${0.1 * index}s`; // delay por membro
         membroDiv.innerHTML = `
           <div class="membro-left">
             <img src="${badge}" alt="Palheta" />
@@ -117,26 +135,10 @@
       });
     }
 
-    function animarLista() {
-      const membrosDivs = Array.from(container.getElementsByClassName("membro"));
-      membrosDivs.forEach(div => div.classList.remove("show"));
-      membrosDivs.forEach((div, i) => {
-        setTimeout(() => {
-          div.classList.add("show");
-        }, i * 100);
-      });
-    }
+    exibirMembros();
 
-    function iniciarAnimacao() {
-      criarLista();
-      animarLista();
-    }
-
-    iniciarAnimacao(); // Primeira vez ao carregar
-
-    setInterval(() => {
-      iniciarAnimacao();
-    }, 10 * 60 * 1000); // A cada 10 minutos
+    // Atualiza a lista com animação a cada 10 minutos
+    setInterval(exibirMembros, 10 * 60 * 1000);
   </script>
 </body>
 </html>
