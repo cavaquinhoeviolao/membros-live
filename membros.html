@@ -12,10 +12,6 @@
       margin: 0;
     }
 
-    #lista-membros {
-      transition: opacity 1s ease;
-    }
-
     .membro {
       display: flex;
       align-items: center;
@@ -51,9 +47,6 @@
   <div id="lista-membros"></div>
 
   <script>
-    const MAX_POR_TELA = 39;
-    const container = document.getElementById("lista-membros");
-
     const palhetaBronzeCores = [
       "#FF7961", "#FFA500", "#FFD700", "#56D68C",
       "#1E90FF", "#9370DB", "#8A2BE2", "#123F59", "#7B68EE"
@@ -68,8 +61,6 @@
         return { cor: "#FFD700", badge: "palheta_ouro.png" };
       } else if (membro.categoria === "Palheta de Fogo") {
         return { cor: "#FF4500", badge: "palheta_fogo.png" };
-      } else if (membro.categoria === "placeholder") {
-        return { cor: "#999999", badge: "placeholder.png" };
       } else {
         let cor = palhetaBronzeCores[0];
         let badge = "palheta_0.png";
@@ -92,9 +83,19 @@
       return partes.length === 1 ? partes[0] : `${partes[0]} ${partes[1][0]}.`;
     }
 
-    function renderizarMembros(membros) {
-      container.innerHTML = "";
-      membros.forEach(m => {
+    const container = document.getElementById("lista-membros");
+
+    async function carregarMembros() {
+      const resposta = await fetch("membros.json");
+      const membros = await resposta.json();
+
+      const membrosOrdenados = [
+        ...membros.filter(m => m.nome === "Mr.Eduardo"),
+        ...membros.filter(m => m.nome !== "Mr.Eduardo" && m.meses !== null).sort((a, b) => b.meses - a.meses),
+        ...membros.filter(m => m.meses === null && m.nome !== "Mr.Eduardo")
+      ];
+
+      membrosOrdenados.forEach(m => {
         const { cor, badge } = getCorEBadge(m);
         const mesesTexto = m.meses === null ? "💀" : m.meses;
         const membroDiv = document.createElement("div");
@@ -108,59 +109,6 @@
         `;
         container.appendChild(membroDiv);
       });
-    }
-
-    function dividirEmPaginas(membros) {
-      const paginas = [];
-      for (let i = 0; i < membros.length; i += MAX_POR_TELA) {
-        paginas.push(membros.slice(i, i + MAX_POR_TELA));
-      }
-      return paginas;
-    }
-
-    function completarPagina(pagina) {
-      while (pagina.length < MAX_POR_TELA) {
-        pagina.push({ nome: "Seja membro!", categoria: "placeholder", meses: "" });
-      }
-      return pagina;
-    }
-
-    async function carregarMembros() {
-      const resposta = await fetch("membros.json");
-      const membros = await resposta.json();
-
-      // Ordenação personalizada
-      const membrosOrdenados = [
-        ...membros.filter(m => m.nome === "Mr. Eduardo"),
-        ...membros.filter(m => m.nome !== "Mr. Eduardo" && m.meses !== null).sort((a, b) => b.meses - a.meses),
-        ...membros.filter(m => m.meses === null && m.nome !== "Mr. Eduardo")
-      ];
-
-      const paginasBrutas = dividirEmPaginas(membrosOrdenados);
-      const paginas = paginasBrutas.map(p => completarPagina(p));
-
-      iniciarCarrossel(paginas);
-    }
-
-    function iniciarCarrossel(paginas) {
-      let indiceAtual = 0;
-
-      function mostrarPagina() {
-        container.style.opacity = 0;
-
-        setTimeout(() => {
-          renderizarMembros(paginas[indiceAtual]);
-          container.style.opacity = 1;
-
-          const membrosVisiveis = paginas[indiceAtual].filter(m => m.categoria !== "placeholder").length;
-          const tempo = membrosVisiveis <= 1 ? 5000 : 300000;
-
-          indiceAtual = (indiceAtual + 1) % paginas.length;
-          setTimeout(mostrarPagina, tempo);
-        }, 1000);
-      }
-
-      mostrarPagina();
     }
 
     carregarMembros();
