@@ -48,7 +48,7 @@
 
   <script>
     const membros = [
-      { nome: "Mr.Eduardo", categoria: "Palheta de Fogo", meses: null },
+      { nome: "Mr. Eduardo", categoria: "Palheta de Fogo", meses: null },
       { nome: "Wellington Costa", categoria: "Palheta de Bronze", meses: 50 },
       { nome: "Romildo Porcher", categoria: "Palheta de Bronze", meses: 36 },
       { nome: "Jesse Junior", categoria: "Palheta de Bronze", meses: 30 },
@@ -121,6 +121,7 @@
     }
 
     function abreviarNome(nome) {
+      if (nome.trim().toLowerCase() === "mr. eduardo") return "Mr. Eduardo";
       const partes = nome.trim().split(" ");
       return partes.length === 1 ? partes[0] : `${partes[0]} ${partes[1][0]}.`;
     }
@@ -128,9 +129,9 @@
     const container = document.getElementById("lista-membros");
 
     const membrosOrdenados = [
-      ...membros.filter(m => m.nome === "Mr.Eduardo"),
-      ...membros.filter(m => m.nome !== "Mr.Eduardo" && m.meses !== null).sort((a, b) => b.meses - a.meses),
-      ...membros.filter(m => m.meses === null && m.nome !== "Mr.Eduardo")
+      ...membros.filter(m => m.nome === "Mr. Eduardo"),
+      ...membros.filter(m => m.nome !== "Mr. Eduardo" && m.meses !== null).sort((a, b) => b.meses - a.meses),
+      ...membros.filter(m => m.meses === null && m.nome !== "Mr. Eduardo")
     ];
 
     membrosOrdenados.forEach(m => {
