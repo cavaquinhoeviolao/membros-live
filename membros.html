@@ -128,8 +128,8 @@
     const container = document.getElementById("lista-membros");
 
     const membrosOrdenados = [
-      ...membros.filter(m => m.nome === "Mr. Eduardo"),
-      ...membros.filter(m => m.nome !== "Mr. Eduardo" && m.meses !== null).sort((a, b) => b.meses - a.meses),
+      ...membros.filter(m => m.nome === "Mr.Eduardo"),
+      ...membros.filter(m => m.nome !== "Mr.Eduardo" && m.meses !== null).sort((a, b) => b.meses - a.meses),
       ...membros.filter(m => m.meses === null && m.nome !== "Mr. Eduardo")
     ];
 
