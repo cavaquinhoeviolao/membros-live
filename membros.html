@@ -53,12 +53,21 @@
       50% { filter: drop-shadow(0 0 8px red) brightness(2); }
     }
 
+    @keyframes brilhoRaio {
+      0%, 100% { filter: drop-shadow(0 0 4px yellow) brightness(1); }
+      50% { filter: drop-shadow(0 0 8px blue) brightness(2); }
+    }
+
     .brilho-metalico {
       animation: brilhoMetalico 2s infinite;
     }
 
     .brilho-fogo {
       animation: brilhoFogo 1s infinite;
+    }
+
+    .brilho-raio {
+      animation: brilhoRaio 1s infinite;
     }
 
     .membro.oculto {
@@ -172,7 +181,7 @@
 
         const imgClasse = m.categoria === "Palheta de Fogo"
           ? "brilho-fogo"
-          : (["palheta de prata", "Palheta de Ouro"].includes(m.categoria.toLowerCase()) ? "brilho-metalico" : "");
+          : (m.meses >= 36 && m.meses < 48 ? "brilho-raio" : (["palheta de prata", "Palheta de Ouro"].includes(m.categoria.toLowerCase()) ? "brilho-metalico" : ""));
 
         const membroDiv = document.createElement("div");
         membroDiv.className = "membro oculto";
