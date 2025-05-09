@@ -160,7 +160,7 @@
     }
 
     function abreviarNome(nome) {
-      if (nome === "Mr.Eduardo") return "Eduardo"; // Exceção
+      if (nome === "Mr.Eduardo") return "Mr. Eduardo"; // Exceção
       const partes = nome.trim().split(" ");
       return partes.length === 1 ? partes[0] : `${partes[0]} ${partes[1][0]}.`;
     }
