@@ -18,23 +18,6 @@
       justify-content: space-between;
       margin-bottom: 2px;
       width: 160px;
-      opacity: 0;
-      transform: translateY(-20px);
-      animation: fadeDown 0.5s ease forwards;
-    }
-
-    .membro:nth-child(1) { animation-delay: 0.1s; }
-    .membro:nth-child(2) { animation-delay: 0.2s; }
-    .membro:nth-child(3) { animation-delay: 0.3s; }
-    .membro:nth-child(4) { animation-delay: 0.4s; }
-    .membro:nth-child(5) { animation-delay: 0.5s; }
-    /* Adicione mais se quiser atrasos mais longos */
-
-    @keyframes fadeDown {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
     }
 
     .membro-left {
@@ -46,6 +29,7 @@
       width: 20px;
       height: 20px;
       margin-right: 4px;
+      transition: filter 0.3s ease;
     }
 
     .nome {
@@ -58,6 +42,35 @@
       text-align: right;
       font-weight: bold;
     }
+
+    @keyframes brilhoMetalico {
+      0%, 100% { filter: brightness(1); }
+      50% { filter: brightness(1.8); }
+    }
+
+    @keyframes brilhoFogo {
+      0%, 100% { filter: drop-shadow(0 0 4px orange) brightness(1); }
+      50% { filter: drop-shadow(0 0 8px red) brightness(2); }
+    }
+
+    .brilho-metalico {
+      animation: brilhoMetalico 2s infinite;
+    }
+
+    .brilho-fogo {
+      animation: brilhoFogo 1s infinite;
+    }
+
+    .membro.oculto {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+
+    .membro.animado {
+      transition: all 0.3s ease;
+      opacity: 1;
+      transform: translateY(0);
+    }
   </style>
 </head>
 <body>
@@ -65,7 +78,7 @@
 
   <script>
     const membros = [
-      { nome: "Mr. Eduardo", categoria: "Palheta de Fogo", meses: null },    
+      { nome: "Mr.Eduardo", categoria: "Palheta de Fogo", meses: null },
       { nome: "Wellington Costa", categoria: "Palheta de Bronze", meses: 50 },
       { nome: "Romildo Porcher", categoria: "Palheta de Bronze", meses: 36 },
       { nome: "Jesse Junior", categoria: "Palheta de Bronze", meses: 30 },
@@ -138,42 +151,52 @@
     }
 
     function abreviarNome(nome) {
-      if (nome.trim().toLowerCase() === "mr. eduardo") return "Mr. Eduardo";
+      if (nome === "Mr.Eduardo") return "Eduardo"; // Exceção
       const partes = nome.trim().split(" ");
       return partes.length === 1 ? partes[0] : `${partes[0]} ${partes[1][0]}.`;
     }
 
+    const container = document.getElementById("lista-membros");
+
+    const membrosOrdenados = [
+      ...membros.filter(m => m.nome === "Mr.Eduardo"),
+      ...membros.filter(m => m.nome !== "Mr.Eduardo" && m.meses !== null).sort((a, b) => b.meses - a.meses),
+      ...membros.filter(m => m.meses === null && m.nome !== "Mr.Eduardo")
+    ];
+
     function exibirMembros() {
-      const container = document.getElementById("lista-membros");
-      container.innerHTML = ""; // limpa a lista
-
-      const membrosOrdenados = [
-        ...membros.filter(m => m.nome === "Mr. Eduardo"),
-        ...membros.filter(m => m.nome !== "Mr. Eduardo" && m.meses !== null).sort((a, b) => b.meses - a.meses),
-        ...membros.filter(m => m.meses === null && m.nome !== "Mr. Eduardo")
-      ];
-
-      membrosOrdenados.forEach((m, index) => {
+      container.innerHTML = "";
+      membrosOrdenados.forEach((m, i) => {
         const { cor, badge } = getCorEBadge(m);
         const mesesTexto = m.meses === null ? "💀" : m.meses;
+
+        const imgClasse = m.categoria === "Palheta de Fogo"
+          ? "brilho-fogo"
+          : (["palheta de prata", "Palheta de Ouro"].includes(m.categoria.toLowerCase()) ? "brilho-metalico" : "");
+
         const membroDiv = document.createElement("div");
-        membroDiv.className = "membro";
-        membroDiv.style.animationDelay = `${0.1 * index}s`; // delay por membro
+        membroDiv.className = "membro oculto";
         membroDiv.innerHTML = `
           <div class="membro-left">
-            <img src="${badge}" alt="Palheta" />
+            <img src="${badge}" alt="Palheta" class="${imgClasse}" />
             <span class="nome" style="color: ${cor}">${abreviarNome(m.nome)}</span>
           </div>
           <span class="meses" style="color: ${cor}">${mesesTexto}</span>
         `;
         container.appendChild(membroDiv);
+
+        setTimeout(() => {
+          membroDiv.classList.add("animado");
+        }, i * 100); // efeito de um a um
       });
     }
 
     exibirMembros();
 
-    // Atualiza a lista com animação a cada 10 minutos
-    setInterval(exibirMembros, 10 * 60 * 1000);
+    // Reexibe com animação a cada 10 minutos
+    setInterval(() => {
+      exibirMembros();
+    }, 600000); // 10 minutos em ms
   </script>
 </body>
 </html>
