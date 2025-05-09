@@ -105,14 +105,14 @@
       { nome: "Luis Claudio fidelis fidelis", categoria: "Palheta de Bronze", meses: 0 },
       { nome: "Pedro Macedo", categoria: "Palheta de Bronze", meses: 0 },
       { nome: "Erivelto Batista", categoria: "Palheta de Bronze", meses: 0 },
-      { nome: "Lucinio Faria neto", categoria: "Palheta de prata", meses: 0 },
-      { nome: "Marcos Sussa", categoria: "Palheta de prata", meses: 1 },
-      { nome: "Luiz Martins", categoria: "Palheta de prata", meses: 8 },
-      { nome: "Giovanna", categoria: "Palheta de prata", meses: 1 },
-      { nome: "Gelson Moreira", categoria: "Palheta de prata", meses: 4 },
-      { nome: "Everton Jorge", categoria: "Palheta de prata", meses: 6 },
-      { nome: "Junior Jr.", categoria: "Palheta de prata", meses: 5 },
-      { nome: "Pintaroxa Mancha", categoria: "Palheta de prata", meses: 6 },
+      { nome: "Lucinio Faria neto", categoria: "Palheta de Prata", meses: 0 },
+      { nome: "Marcos Sussa", categoria: "Palheta de Prata", meses: 1 },
+      { nome: "Luiz Martins", categoria: "Palheta de Prata", meses: 8 },
+      { nome: "Giovanna", categoria: "Palheta de Prata", meses: 1 },
+      { nome: "Gelson Moreira", categoria: "Palheta de Prata", meses: 4 },
+      { nome: "Everton Jorge", categoria: "Palheta de Prata", meses: 6 },
+      { nome: "Junior Jr.", categoria: "Palheta de Prata", meses: 5 },
+      { nome: "Pintaroxa Mancha", categoria: "Palheta de Prata", meses: 6 },
       { nome: "Maqui Rivero", categoria: "Palheta de Ouro", meses: 8 },
       { nome: "Zeca", categoria: "Palheta de Fogo", meses: 6 },
       { nome: "Lincoln Jr.", categoria: "Palheta de Fogo", meses: 8 },
@@ -127,7 +127,7 @@
     function getCorEBadge(membro) {
       const meses = membro.meses;
 
-      if (membro.categoria.toLowerCase() === "palheta de prata") {
+      if (membro.categoria.toLowerCase() === "Palheta de Prata") {
         return { cor: "#cccccc", badge: "palheta_prata.png" };
       } else if (membro.categoria === "Palheta de Ouro") {
         return { cor: "#FFD700", badge: "palheta_ouro.png" };
@@ -172,7 +172,7 @@
 
         const imgClasse = m.categoria === "Palheta de Fogo"
           ? "brilho-fogo"
-          : (["palheta de prata", "Palheta de Ouro"].includes(m.categoria.toLowerCase()) ? "brilho-metalico" : "");
+          : (["Palheta de Prata", "Palheta de Ouro"].includes(m.categoria.toLowerCase()) ? "brilho-metalico" : "");
 
         const membroDiv = document.createElement("div");
         membroDiv.className = "membro oculto";
