@@ -54,8 +54,8 @@
     }
 
     @keyframes brilhoRaio {
-      0%, 100% { filter: drop-shadow(0 0 4px yellow) brightness(1); }
-      50% { filter: drop-shadow(0 0 8px blue) brightness(2); }
+      0%, 100% { filter: drop-shadow(0 0 4px blue) brightness(1); }
+      50% { filter: drop-shadow(0 0 10px yellow) brightness(1.5); }
     }
 
     .brilho-metalico {
@@ -160,7 +160,7 @@
     }
 
     function abreviarNome(nome) {
-      if (nome === "Mr.Eduardo") return "Mr. Eduardo"; // Exceção
+      if (nome === "Mr.Eduardo") return "Eduardo"; // Exceção
       const partes = nome.trim().split(" ");
       return partes.length === 1 ? partes[0] : `${partes[0]} ${partes[1][0]}.`;
     }
@@ -181,7 +181,7 @@
 
         const imgClasse = m.categoria === "Palheta de Fogo"
           ? "brilho-fogo"
-          : (m.meses >= 36 && m.meses < 48 ? "brilho-raio" : (["palheta de prata", "Palheta de Ouro"].includes(m.categoria.toLowerCase()) ? "brilho-metalico" : ""));
+          : (m.categoria === "Palheta de Ouro" ? "brilho-metalico" : (m.meses >= 36 && m.meses < 48 ? "brilho-raio" : ""));
 
         const membroDiv = document.createElement("div");
         membroDiv.className = "membro oculto";
