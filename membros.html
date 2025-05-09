@@ -53,21 +53,12 @@
       50% { filter: drop-shadow(0 0 8px red) brightness(2); }
     }
 
-    @keyframes brilhoRaio {
-      0%, 100% { filter: drop-shadow(0 0 4px blue) brightness(1); }
-      50% { filter: drop-shadow(0 0 8px yellow) brightness(1.5); }
-    }
-
     .brilho-metalico {
       animation: brilhoMetalico 2s infinite;
     }
 
     .brilho-fogo {
       animation: brilhoFogo 1s infinite;
-    }
-
-    .brilho-raio {
-      animation: brilhoRaio 1s infinite;
     }
 
     .membro.oculto {
@@ -114,68 +105,98 @@
       { nome: "Luis Claudio fidelis fidelis", categoria: "Palheta de Bronze", meses: 0 },
       { nome: "Pedro Macedo", categoria: "Palheta de Bronze", meses: 0 },
       { nome: "Erivelto Batista", categoria: "Palheta de Bronze", meses: 0 },
-      { nome: "Lucinio Faria neto", categoria: "Palheta de Prata", meses: 0 },
-      { nome: "Marcos Sussa", categoria: "Palheta de Prata", meses: 1 },
-      { nome: "Luiz Martins", categoria: "Palheta de Prata", meses: 8 },
-      { nome: "Giovanna", categoria: "Palheta de Prata", meses: 1 },
-      { nome: "Gelson Moreira", categoria: "Palheta de Prata", meses: 4 },
-      { nome: "Everton Jorge", categoria: "Palheta de Prata", meses: 6 },
-      { nome: "Junior Jr.", categoria: "Palheta de Prata", meses: 5 },
-      { nome: "Pintaroxa Mancha", categoria: "Palheta de Prata", meses: 6 }
+      { nome: "Lucinio Faria neto", categoria: "Palheta de prata", meses: 0 },
+      { nome: "Marcos Sussa", categoria: "Palheta de prata", meses: 1 },
+      { nome: "Luiz Martins", categoria: "Palheta de prata", meses: 8 },
+      { nome: "Giovanna", categoria: "Palheta de prata", meses: 1 },
+      { nome: "Gelson Moreira", categoria: "Palheta de prata", meses: 4 },
+      { nome: "Everton Jorge", categoria: "Palheta de prata", meses: 6 },
+      { nome: "Junior Jr.", categoria: "Palheta de prata", meses: 5 },
+      { nome: "Pintaroxa Mancha", categoria: "Palheta de prata", meses: 6 },
+      { nome: "Maqui Rivero", categoria: "Palheta de Ouro", meses: 8 },
+      { nome: "Zeca", categoria: "Palheta de Fogo", meses: 6 },
+      { nome: "Lincoln Jr.", categoria: "Palheta de Fogo", meses: 8 },
+      { nome: "Bruno Breve", categoria: "Palheta de Fogo", meses: 8 }
     ];
 
-    const listaMembrosDiv = document.getElementById('lista-membros');
+    const palhetaBronzeCores = [
+      "#FF7961", "#FFA500", "#F3CF3E", "#56D68C",
+      "#3397DB", "#AE7AC4", "#7f36ba", "#1D6894", "#7B68EE"
+    ];
 
-    membros.forEach(membro => {
-      const membroDiv = document.createElement('div');
-      membroDiv.classList.add('membro');
-      membroDiv.classList.add('animado');
+    function getCorEBadge(membro) {
+      const meses = membro.meses;
 
-      const membroLeftDiv = document.createElement('div');
-      membroLeftDiv.classList.add('membro-left');
+      if (membro.categoria.toLowerCase() === "palheta de prata") {
+        return { cor: "#cccccc", badge: "palheta_prata.png" };
+      } else if (membro.categoria === "Palheta de Ouro") {
+        return { cor: "#FFD700", badge: "palheta_ouro.png" };
+      } else if (membro.categoria === "Palheta de Fogo") {
+        return { cor: "#FF4500", badge: "palheta_fogo.png" };
+      } else {
+        let cor = palhetaBronzeCores[0];
+        let badge = "palheta_0.png";
 
-      let imagem = '';
-      let classeBrilho = '';
-      let categoriaClass = '';
+        if (meses >= 60) { cor = palhetaBronzeCores[8]; badge = "palheta_60.png"; }
+        else if (meses >= 48) { cor = palhetaBronzeCores[7]; badge = "palheta_48.png"; }
+        else if (meses >= 36) { cor = palhetaBronzeCores[6]; badge = "palheta_36.png"; }
+        else if (meses >= 24) { cor = palhetaBronzeCores[5]; badge = "palheta_24.png"; }
+        else if (meses >= 12) { cor = palhetaBronzeCores[4]; badge = "palheta_12.png"; }
+        else if (meses >= 6) { cor = palhetaBronzeCores[3]; badge = "palheta_6.png"; }
+        else if (meses >= 2) { cor = palhetaBronzeCores[2]; badge = "palheta_2.png"; }
+        else if (meses >= 1) { cor = palhetaBronzeCores[1]; badge = "palheta_1.png"; }
 
-      // Atribuir a imagem e a classe de brilho dependendo da categoria
-      if (membro.categoria === "Palheta de Fogo") {
-        imagem = 'path-to-palheta-de-fogo-image'; // Substitua com o caminho da imagem
-        classeBrilho = 'brilho-fogo';
-      } else if (membro.categoria === "Palheta de Bronze") {
-        imagem = 'path-to-palheta-de-bronze-image'; // Substitua com o caminho da imagem
-      } else if (membro.categoria === "Palheta de Prata") {
-        imagem = 'path-to-palheta-de-prata-image'; // Substitua com o caminho da imagem
+        return { cor, badge };
       }
+    }
 
-      const img = document.createElement('img');
-      img.src = imagem;
+    function abreviarNome(nome) {
+      if (nome === "Mr.Eduardo") return "Eduardo"; // Exceção
+      const partes = nome.trim().split(" ");
+      return partes.length === 1 ? partes[0] : `${partes[0]} ${partes[1][0]}.`;
+    }
 
-      membroLeftDiv.appendChild(img);
+    const container = document.getElementById("lista-membros");
 
-      const nomeDiv = document.createElement('span');
-      nomeDiv.classList.add('nome');
-      nomeDiv.innerText = membro.nome;
+    const membrosOrdenados = [
+      ...membros.filter(m => m.nome === "Mr.Eduardo"),
+      ...membros.filter(m => m.nome !== "Mr.Eduardo" && m.meses !== null).sort((a, b) => b.meses - a.meses),
+      ...membros.filter(m => m.meses === null && m.nome !== "Mr.Eduardo")
+    ];
 
-      const mesesDiv = document.createElement('span');
-      mesesDiv.classList.add('meses');
-      mesesDiv.innerText = membro.meses !== null ? membro.meses : 'N/A';
+    function exibirMembros() {
+      container.innerHTML = "";
+      membrosOrdenados.forEach((m, i) => {
+        const { cor, badge } = getCorEBadge(m);
+        const mesesTexto = m.meses === null ? "💀" : m.meses;
 
-      // Aplica brilho dependendo da quantidade de meses
-      if (membro.meses !== null) {
-        if (membro.meses >= 48) {
-          membroDiv.classList.add(classeBrilho);
-        } else if (membro.meses >= 36 && membro.meses < 48) {
-          membroDiv.classList.add('brilho-raio');
-        }
-      }
+        const imgClasse = m.categoria === "Palheta de Fogo"
+          ? "brilho-fogo"
+          : (["palheta de prata", "Palheta de Ouro"].includes(m.categoria.toLowerCase()) ? "brilho-metalico" : "");
 
-      membroDiv.appendChild(membroLeftDiv);
-      membroDiv.appendChild(nomeDiv);
-      membroDiv.appendChild(mesesDiv);
+        const membroDiv = document.createElement("div");
+        membroDiv.className = "membro oculto";
+        membroDiv.innerHTML = `
+          <div class="membro-left">
+            <img src="${badge}" alt="Palheta" class="${imgClasse}" />
+            <span class="nome" style="color: ${cor}">${abreviarNome(m.nome)}</span>
+          </div>
+          <span class="meses" style="color: ${cor}">${mesesTexto}</span>
+        `;
+        container.appendChild(membroDiv);
 
-      listaMembrosDiv.appendChild(membroDiv);
-    });
+        setTimeout(() => {
+          membroDiv.classList.add("animado");
+        }, i * 100); // efeito de um a um
+      });
+    }
+
+    exibirMembros();
+
+    // Reexibe com animação a cada 10 minutos
+    setInterval(() => {
+      exibirMembros();
+    }, 600000); // 10 minutos em ms
   </script>
 </body>
 </html>
