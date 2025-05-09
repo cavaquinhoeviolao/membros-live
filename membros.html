@@ -53,12 +53,21 @@
       50% { filter: drop-shadow(0 0 8px red) brightness(2); }
     }
 
+    @keyframes brilhoRaio {
+      0%, 100% { filter: drop-shadow(0 0 4px blue) brightness(1); }
+      50% { filter: drop-shadow(0 0 8px yellow) brightness(1.5); }
+    }
+
     .brilho-metalico {
       animation: brilhoMetalico 2s infinite;
     }
 
     .brilho-fogo {
       animation: brilhoFogo 1s infinite;
+    }
+
+    .brilho-raio {
+      animation: brilhoRaio 1s infinite;
     }
 
     .membro.oculto {
@@ -170,9 +179,16 @@
         const { cor, badge } = getCorEBadge(m);
         const mesesTexto = m.meses === null ? "💀" : m.meses;
 
-        const imgClasse = m.categoria === "Palheta de Fogo"
-          ? "brilho-fogo"
-          : (["Palheta de Prata", "Palheta de Ouro"].includes(m.categoria.toLowerCase()) ? "brilho-metalico" : "");
+        let imgClasse = "";
+        if (m.categoria === "Palheta de Fogo") {
+          imgClasse = "brilho-fogo";
+        } else if (m.categoria === "Palheta de Ouro" || m.categoria === "Palheta de Prata") {
+          imgClasse = "brilho-metalico";
+        }
+
+        // Brilho extra baseado nos meses
+        if (m.meses > 48) imgClasse = "brilho-fogo";
+        else if (m.meses >= 36 && m.meses <= 47) imgClasse = "brilho-raio";
 
         const membroDiv = document.createElement("div");
         membroDiv.className = "membro oculto";
