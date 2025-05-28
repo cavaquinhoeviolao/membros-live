@@ -118,6 +118,7 @@
   }
 
   function abreviarNome(nome) {
+    if (nome === "Mr.Eduardo") return "Mr. Eduardo"; // exceção específica
     const partes = nome.trim().split(" ");
     return partes.length === 1 ? partes[0] : `${partes[0]} ${partes[1][0]}.`;
   }
@@ -188,7 +189,7 @@
       mostrarGrupo();
       setInterval(() => {
         mostrarGrupo();
-      }, 300000); // 5 minutos
+      }, 100000); // 5 minutos
     } catch (e) {
       console.error("Erro ao carregar membros:", e);
     }
