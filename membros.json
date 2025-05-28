@@ -38,8 +38,6 @@
   { "nome": "Pedro Macedo", "categoria": "Palheta de Bronze", "meses": 1 },  
   { "nome": "Luis Claudio fidelis", "categoria": "Palheta de Bronze", "meses": 0 },
   { "nome": "WDC Produções", "categoria": "Palheta de Bronze", "meses": 0 },
-  { "nome": "Marcelo Cavaco", "categoria": "Palheta de Ouro", "meses": 0 },
-  { "nome": "Willian Cavaco", "categoria": "Palheta de Ouro", "meses": 0 },
-  { "nome": "Will do Cavaco", "categoria": "Palheta de Ouro", "meses": 0 },
+  { "nome": "Marcelo Cavaco", "categoria": "Palheta de Ouro", "meses": 0 },  
   { "nome": "Ricardo Bezerra", "categoria": "Palheta de prata", "meses": 0 }
 ]
