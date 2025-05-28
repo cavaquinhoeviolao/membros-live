@@ -127,11 +127,10 @@
       const res = await fetch("membros.json");
       const membros = await res.json();
 
-      const membrosOrdenados = [
-        ...membros.filter(m => m.nome === "Mr.Eduardo"),
-        ...membros.filter(m => m.nome !== "Mr.Eduardo" && m.meses !== null).sort((a, b) => b.meses - a.meses),
-        ...membros.filter(m => m.meses === null && m.nome !== "Mr.Eduardo")
-      ];
+      const membrosOrdenados = membros
+        .filter(m => m.meses !== null)
+        .sort((a, b) => b.meses - a.meses)
+        .concat(membros.filter(m => m.meses === null));
 
       const grupos = [];
       for (let i = 0; i < membrosOrdenados.length; i += 42) {
@@ -147,7 +146,7 @@
         ultimoGrupo.push({
           nome: "Seja membro",
           categoria: "Palheta Vazia",
-          meses: "⏳"
+          meses: null
         });
       }
 
@@ -161,7 +160,7 @@
         grupoAtual.forEach((m, i) => {
           let cor, badge, classe;
           if (m.categoria === "Palheta Vazia") {
-            cor = "gray";
+            cor = "#cccccc";
             badge = "palheta_membro.png";
             classe = "";
           } else {
@@ -175,7 +174,7 @@
               <img src="${badge}" alt="Palheta" class="${classe}" />
               <span class="nome" style="color: ${cor}">${abreviarNome(m.nome)}</span>
             </div>
-            <span class="meses" style="color: ${cor}">${m.meses}</span>
+            <span class="meses" style="color: ${cor}">${m.categoria === "Palheta Vazia" ? "⏳" : m.meses}</span>
           `;
           container.appendChild(membroDiv);
           setTimeout(() => {
@@ -187,7 +186,6 @@
       }
 
       mostrarGrupo();
-
       setInterval(() => {
         mostrarGrupo();
       }, 300000); // 5 minutos
@@ -200,3 +198,4 @@
 </script>
 </body>
 </html>
+
