@@ -140,14 +140,18 @@
       }
 
       // Preencher o último grupo com espaços vazios, se necessário
-      const ultimoGrupo = grupos[grupos.length - 1];
-      while (ultimoGrupo.length < 42) {
-        ultimoGrupo.push({
-          nome: "Seja membro",
-          categoria: "Palheta Vazia",
-          meses: "⏳"
-        });
-      }
+      if (grupos.length === 0) {
+  grupos.push([]);
+}
+
+const ultimoGrupo = grupos[grupos.length - 1];
+while (ultimoGrupo.length < 42) {
+  ultimoGrupo.push({
+    nome: "Seja membro",
+    categoria: "Palheta Vazia",
+    meses: "⏳"
+  });
+}
 
       let indiceGrupo = 0;
       const container = document.getElementById("lista-membros");
