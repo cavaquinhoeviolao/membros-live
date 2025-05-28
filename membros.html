@@ -135,22 +135,29 @@
         .concat(membros.filter(m => m.meses === null));
 
       const grupos = [];
-      for (let i = 0; i < membrosOrdenados.length; i += 42) {
-        grupos.push(membrosOrdenados.slice(i, i + 42));
-      }
+for (let i = 0; i < membrosOrdenados.length; i += 42) {
+  const grupo = membrosOrdenados.slice(i, i + 42);
+  while (grupo.length < 42) {
+    grupo.push({
+      nome: "Seja membro",
+      categoria: "Palheta Vazia",
+      meses: null
+    });
+  }
+  grupos.push(grupo);
+}
 
-      if (grupos.length === 0) {
-        grupos.push([]);
-      }
-
-      const ultimoGrupo = grupos[grupos.length - 1];
-      while (ultimoGrupo.length < 42) {
-        ultimoGrupo.push({
-          nome: "Seja membro",
-          categoria: "Palheta Vazia",
-          meses: null
-        });
-      }
+if (grupos.length === 0) {
+  const grupoVazio = [];
+  while (grupoVazio.length < 42) {
+    grupoVazio.push({
+      nome: "Seja membro",
+      categoria: "Palheta Vazia",
+      meses: null
+    });
+  }
+  grupos.push(grupoVazio);
+}
 
       let indiceGrupo = 0;
       const container = document.getElementById("lista-membros");
