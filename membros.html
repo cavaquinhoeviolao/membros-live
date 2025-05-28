@@ -118,10 +118,11 @@
   }
 
   function abreviarNome(nome) {
-    if (nome === "Mr.Eduardo") return "Mr. Eduardo"; // exceção específica
-    const partes = nome.trim().split(" ");
-    return partes.length === 1 ? partes[0] : `${partes[0]} ${partes[1][0]}.`;
-  }
+  if (nome === "Mr.Eduardo") return "Mr. Eduardo"; // exceção específica
+  if (nome === "Seja membro") return "Seja Membro"; // não abrevia
+  const partes = nome.trim().split(" ");
+  return partes.length === 1 ? partes[0] : `${partes[0]} ${partes[1][0]}.`;
+}
 
   async function carregarMembros() {
     try {
