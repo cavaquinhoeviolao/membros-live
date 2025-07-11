@@ -29,7 +29,8 @@
   { "nome": "Junior Jr.", "categoria": "Palheta de prata", "meses": 7 },
   { "nome": "Gelson Moreira", "categoria": "Palheta de prata", "meses": 6 },  
   { "nome": "Ícaro", "categoria": "Palheta de Bronze", "meses": 5 },  
-  { "nome": "Vitor", "categoria": "Palheta de Bronze", "meses": 5 },  
+  { "nome": "Vitor", "categoria": "Palheta de Bronze", "meses": 5 }, 
+  { "nome": "Eduardo Jesus", "categoria": "Palheta de Bronze", "meses": 4 }, 
   { "nome": "Giovanna", "categoria": "Palheta de prata", "meses": 3 },
   { "nome": "Ricardo Antonio", "categoria": "Palheta de Bronze", "meses": 3 },
   { "nome": "Pedro Macedo", "categoria": "Palheta de Bronze", "meses": 2 },  
@@ -43,5 +44,7 @@
   { "nome": "Filipi Freitas", "categoria": "Palheta de Bronze", "meses": 0 },
   { "nome": "Alex N.", "categoria": "Palheta de Bronze", "meses": 0 },
   { "nome": "Yuri Iwai", "categoria": "Palheta de Bronze", "meses": 0 },
+  { "nome": "Thiago Augusto", "categoria": "Palheta de prata", "meses": 0 },
+  { "nome": "Leonardo Müller", "categoria": "Palheta de prata", "meses": 0 },
   { "nome": "Alan Silva", "categoria": "Palheta de prata", "meses": 0 }
 ]
