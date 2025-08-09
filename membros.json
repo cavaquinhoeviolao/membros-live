@@ -26,7 +26,8 @@
   { "nome": "Steferson Siqueira", "categoria": "Palheta de Bronze", "meses": 9 },
   { "nome": "Bruno Rodrigues Imóveis", "categoria": "Palheta de Bronze", "meses": 8 },
   { "nome": "Junior Jr.", "categoria": "Palheta de prata", "meses": 8 },
-  { "nome": "Gelson Moreira", "categoria": "Palheta de prata", "meses": 7 },   
+  { "nome": "Gelson Moreira", "categoria": "Palheta de prata", "meses": 7 },
+  { "nome": "Ícaro", "categoria": "Palheta de Bronze", "meses": 6 }, 
   { "nome": "Vitor", "categoria": "Palheta de Bronze", "meses": 5 }, 
   { "nome": "Eduardo Jesus", "categoria": "Palheta de Bronze", "meses": 4 }, 
   { "nome": "Giovanna", "categoria": "Palheta de prata", "meses": 4 },
@@ -74,5 +75,11 @@
   { "nome": "Carlos Guga", "categoria": "Palheta de Bronze", "meses": 0 }, 
   { "nome": "Gabi_&_Bira", "categoria": "Palheta de Bronze", "meses": 0 }, 
   { "nome": "Marlon Souza", "categoria": "Palheta de Bronze", "meses": 0 }, 
-  { "nome": "Robson Barbeiro", "categoria": "Palheta de Bronze", "meses": 0 } 
+  { "nome": "Robson Barbeiro", "categoria": "Palheta de Bronze", "meses": 0 }, 
+  { "nome": "Vlad_Toys", "categoria": "Palheta de Bronze", "meses": 0 }, 
+  { "nome": "Canal_do_Júnior", "categoria": "Palheta de Bronze", "meses": 0 }, 
+  { "nome": "David Souza", "categoria": "Palheta de Bronze", "meses": 0 }, 
+  { "nome": "Wanderson S.", "categoria": "Palheta de Bronze", "meses": 0 }, 
+  { "nome": "Canal_de_música", "categoria": "Palheta de Bronze", "meses": 0 }, 
+  { "nome": "Igor Magalhães", "categoria": "Palheta de Bronze", "meses": 0 } 
 ]
