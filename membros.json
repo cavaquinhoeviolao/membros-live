@@ -26,6 +26,7 @@
   {"nome": "Junior Jr", "categoria": "Palheta de prata", "meses": 9},
   {"nome": "Vitor", "categoria": "Palheta de Bronze", "meses": 6},
   {"nome": "Eduardo Jesus", "categoria": "Palheta de Bronze", "meses": 6},
+  {"nome": "Ricardo Antonio Dos Santos", "categoria": "Palheta de Bronze", "meses": 5},
   {"nome": "Pedro macedo", "categoria": "Palheta de Bronze", "meses": 5},
   {"nome": "Giovanna", "categoria": "Palheta de prata", "meses": 5},
   {"nome": "Marcos Sussa", "categoria": "Palheta de Bronze", "meses": 4},
@@ -71,6 +72,11 @@
   {"nome": "Sannes", "categoria": "Palheta de Bronze", "meses": 1},
   {"nome": "Davi Marques de Medeiros França", "categoria": "Palheta de Bronze", "meses": 1},
   {"nome": "Robson Barbeiro", "categoria": "Palheta de Bronze", "meses": 1},
+  {"nome": "Ricardo Oliveira", "categoria": "Palheta de Bronze", "meses": 0},
+  {"nome": "Marcus Aloc", "categoria": "Palheta de Bronze", "meses": 0},
+  {"nome": "Luan Barcelos", "categoria": "Palheta de Bronze", "meses": 0},
+  {"nome": "Ton Senna", "categoria": "Palheta de Bronze", "meses": 0},
+  {"nome": "Carlos Didier", "categoria": "Palheta de Bronze", "meses": 0},
   {"nome": "Fernando Barbosa", "categoria": "Palheta de Bronze", "meses": 0},
   {"nome": "Leonardo Santos", "categoria": "Palheta de Bronze", "meses": 0},
   {"nome": "Marcelo Dantas", "categoria": "Palheta de Bronze", "meses": 0},
@@ -79,5 +85,5 @@
   {"nome": "Walisson Luiz", "categoria": "Palheta de Bronze", "meses": 0},
   {"nome": "Jean Libert", "categoria": "Palheta de Bronze", "meses": 0},
   {"nome": "Tossan", "categoria": "Palheta de Bronze", "meses": 0},
-  {"nome": "jeanlouis filipe", "categoria": "Palheta de Bronze", "meses": 0}
+  {"nome": "jeanlouisfilipe", "categoria": "Palheta de Bronze", "meses": 0}
 ]
