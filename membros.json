@@ -14,6 +14,7 @@
   {"nome": "Júnior 001", "categoria": "Palheta de Bronze", "meses": 16},
   {"nome": "Yuri Santos", "categoria": "Palheta de Bronze", "meses": 16},
   {"nome": "Paulo Costa", "categoria": "Palheta de Bronze", "meses": 16},
+  {"nome": "Du Higashi", "categoria": "Palheta de Bronze", "meses": 16},
   {"nome": "Luiz Martins", "categoria": "Palheta de prata", "meses": 14},
   {"nome": "Maqui Rivero", "categoria": "Palheta de Ouro", "meses": 13},
   {"nome": "Bruno Breve", "categoria": "Palheta de Fogo", "meses": 13},
@@ -71,5 +72,6 @@
   {"nome": "Marcus Aloc", "categoria": "Palheta de Bronze", "meses": 0},
   {"nome": "Luan Barcelos", "categoria": "Palheta de Bronze", "meses": 0},
   {"nome": "Ton Senna", "categoria": "Palheta de Bronze", "meses": 0},
+  {"nome": "Hurricane", "categoria": "Palheta de Ouro", "meses": 0},
   {"nome": "Carlos Didier", "categoria": "Palheta de Bronze", "meses": 0}
 ]
