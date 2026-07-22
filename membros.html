@@ -83,128 +83,256 @@
   </style>
 </head>
 <body>
-  <div id="lista-membros"></div>
+
+<div id="lista-membros"></div>
+
 <script>
-  const palhetaBronzeCores = [
-    "#FF7961", "#FFA500", "#F3CF3E", "#56D68C",
-    "#3397DB", "#AE7AC4", "#7f36ba", "#1D6894", "#7B68EE"
-  ];
+const palhetaBronzeCores = [
+  "#FF7961", // 0 meses
+  "#FFA500", // 1 mês
+  "#F3CF3E", // 2 meses
+  "#56D68C", // 6 meses
+  "#3397DB", // 12 meses
+  "#AE7AC4", // 24 meses
+  "#7F36BA", // 36 meses
+  "#FF4FA3", // 48 meses
+  "#00C853", // 60 meses
+  "#FF1744", // 72 meses
+  "#2979FF", // 84 meses
+  "#00E676", // 96 meses
+  "#D50000", //108 meses
+  "#00B248"  //120 meses
+];
 
-  function getCorEBadge(membro) {
-    const meses = membro.meses;
+function getCorEBadge(membro) {
 
-    if (membro.categoria.toLowerCase() === "palheta de prata") {
-      return { cor: "#cccccc", badge: "palheta_prata.png", classe: "brilho-metalico" };
-    } else if (membro.categoria === "Palheta de Ouro") {
-      return { cor: "#FFD700", badge: "palheta_ouro.png", classe: "brilho-metalico" };
-    } else if (membro.categoria === "Palheta de Fogo") {
-      return { cor: "#FF4500", badge: "palheta_fogo.png", classe: "brilho-fogo" };
-    } else {
-      let cor = palhetaBronzeCores[0];
-      let badge = "palheta_0.png";
-      let classe = "";
+  const meses = membro.meses;
 
-      if (meses >= 60) { cor = palhetaBronzeCores[8]; badge = "palheta_60.png"; classe = "brilho-fogo"; }
-      else if (meses >= 48) { cor = palhetaBronzeCores[7]; badge = "palheta_48.png"; classe = "brilho-fogo"; }
-      else if (meses >= 36) { cor = palhetaBronzeCores[6]; badge = "palheta_36.png"; classe = "brilho-raio"; }
-      else if (meses >= 24) { cor = palhetaBronzeCores[5]; badge = "palheta_24.png"; }
-      else if (meses >= 12) { cor = palhetaBronzeCores[4]; badge = "palheta_12.png"; }
-      else if (meses >= 6) { cor = palhetaBronzeCores[3]; badge = "palheta_6.png"; }
-      else if (meses >= 2) { cor = palhetaBronzeCores[2]; badge = "palheta_2.png"; }
-      else if (meses >= 1) { cor = palhetaBronzeCores[1]; badge = "palheta_1.png"; }
-
-      return { cor, badge, classe };
-    }
+  if (membro.categoria.toLowerCase() === "palheta de prata") {
+    return {
+      cor: "#cccccc",
+      badge: "palheta_prata.png",
+      classe: "brilho-metalico"
+    };
   }
 
-  function abreviarNome(nome) {
-  if (nome === "Mr.Eduardo") return "Mr. Eduardo"; // exceção específica
-  if (nome === "Seja membro") return "Seja Membro"; // não abrevia
+  if (membro.categoria === "Palheta de Ouro") {
+    return {
+      cor: "#FFD700",
+      badge: "palheta_ouro.png",
+      classe: "brilho-metalico"
+    };
+  }
+
+  if (membro.categoria === "Palheta de Fogo") {
+    return {
+      cor: "#FF4500",
+      badge: "palheta_fogo.png",
+      classe: "brilho-fogo"
+    };
+  }
+
+  let cor = palhetaBronzeCores[0];
+  let badge = "palheta_0.png";
+  let classe = "";
+
+  if (meses >= 120) {
+    cor = palhetaBronzeCores[13];
+    badge = "palheta_120.png";
+    classe = "brilho-fogo";
+  }
+  else if (meses >= 108) {
+    cor = palhetaBronzeCores[12];
+    badge = "palheta_108.png";
+    classe = "brilho-fogo";
+  }
+  else if (meses >= 96) {
+    cor = palhetaBronzeCores[11];
+    badge = "palheta_96.png";
+    classe = "brilho-fogo";
+  }
+  else if (meses >= 84) {
+    cor = palhetaBronzeCores[10];
+    badge = "palheta_84.png";
+    classe = "brilho-fogo";
+  }
+  else if (meses >= 72) {
+    cor = palhetaBronzeCores[9];
+    badge = "palheta_72.png";
+    classe = "brilho-fogo";
+  }
+  else if (meses >= 60) {
+    cor = palhetaBronzeCores[8];
+    badge = "palheta_60.png";
+    classe = "brilho-fogo";
+  }
+  else if (meses >= 48) {
+    cor = palhetaBronzeCores[7];
+    badge = "palheta_48.png";
+    classe = "brilho-fogo";
+  }
+  else if (meses >= 36) {
+    cor = palhetaBronzeCores[6];
+    badge = "palheta_36.png";
+    classe = "brilho-raio";
+  }
+  else if (meses >= 24) {
+    cor = palhetaBronzeCores[5];
+    badge = "palheta_24.png";
+  }
+  else if (meses >= 12) {
+    cor = palhetaBronzeCores[4];
+    badge = "palheta_12.png";
+  }
+  else if (meses >= 6) {
+    cor = palhetaBronzeCores[3];
+    badge = "palheta_6.png";
+  }
+  else if (meses >= 2) {
+    cor = palhetaBronzeCores[2];
+    badge = "palheta_2.png";
+  }
+  else if (meses >= 1) {
+    cor = palhetaBronzeCores[1];
+    badge = "palheta_1.png";
+  }
+
+  return { cor, badge, classe };
+}
+
+function abreviarNome(nome) {
+
+  if (nome === "Mr.Eduardo") return "Mr. Eduardo";
+  if (nome === "Seja membro") return "Seja Membro";
+
   const partes = nome.trim().split(" ");
-  return partes.length === 1 ? partes[0] : `${partes[0]} ${partes[1][0]}.`;
+
+  return partes.length === 1
+    ? partes[0]
+    : `${partes[0]} ${partes[1][0]}.`;
 }
 
-  async function carregarMembros() {
-    try {
-      const res = await fetch("membros.json");
-      const membros = await res.json();
+async function carregarMembros() {
 
-      const membrosOrdenados = membros
-        .filter(m => m.meses !== null)
-        .sort((a, b) => b.meses - a.meses)
-        .concat(membros.filter(m => m.meses === null));
+  try {
 
-      const grupos = [];
-for (let i = 0; i < membrosOrdenados.length; i += 42) {
-  const grupo = membrosOrdenados.slice(i, i + 42);
-  while (grupo.length < 42) {
-    grupo.push({
-      nome: "Seja membro",
-      categoria: "Palheta Vazia",
-      meses: null
-    });
-  }
-  grupos.push(grupo);
-}
+    const res = await fetch("membros.json");
+    const membros = await res.json();
 
-if (grupos.length === 0) {
-  const grupoVazio = [];
-  while (grupoVazio.length < 42) {
-    grupoVazio.push({
-      nome: "Seja membro",
-      categoria: "Palheta Vazia",
-      meses: null
-    });
-  }
-  grupos.push(grupoVazio);
-}
+    const membrosOrdenados = membros
+      .filter(m => m.meses !== null)
+      .sort((a, b) => b.meses - a.meses)
+      .concat(
+        membros.filter(m => m.meses === null)
+      );
 
-      let indiceGrupo = 0;
-      const container = document.getElementById("lista-membros");
+    const grupos = [];
 
-      function mostrarGrupo() {
-        container.innerHTML = "";
-        const grupoAtual = grupos[indiceGrupo];
+    for (let i = 0; i < membrosOrdenados.length; i += 42) {
 
-        grupoAtual.forEach((m, i) => {
-          let cor, badge, classe;
-          if (m.categoria === "Palheta Vazia") {
-            cor = "#cccccc";
-            badge = "palheta_membro.png";
-            classe = "";
-          } else {
-            ({ cor, badge, classe } = getCorEBadge(m));
-          }
+      const grupo = membrosOrdenados.slice(i, i + 42);
 
-          const membroDiv = document.createElement("div");
-          membroDiv.className = "membro oculto";
-          membroDiv.innerHTML = `
-            <div class="membro-left">
-              <img src="${badge}" alt="Palheta" class="${classe}" />
-              <span class="nome" style="color: ${cor}">${abreviarNome(m.nome)}</span>
-            </div>
-            <span class="meses" style="color: ${cor}">${m.categoria === "Palheta Vazia" ? "🤠" : m.meses}</span>
-          `;
-          container.appendChild(membroDiv);
-          setTimeout(() => {
-            membroDiv.classList.add("animado");
-          }, i * 100);
+      while (grupo.length < 42) {
+        grupo.push({
+          nome: "Seja membro",
+          categoria: "Palheta Vazia",
+          meses: null
         });
-
-        indiceGrupo = (indiceGrupo + 1) % grupos.length;
       }
 
-      mostrarGrupo();
-      setInterval(() => {
-        mostrarGrupo();
-      }, 600000); // 10 minutos
-    } catch (e) {
-      console.error("Erro ao carregar membros:", e);
+      grupos.push(grupo);
     }
+
+    if (grupos.length === 0) {
+
+      const grupoVazio = [];
+
+      while (grupoVazio.length < 42) {
+        grupoVazio.push({
+          nome: "Seja membro",
+          categoria: "Palheta Vazia",
+          meses: null
+        });
+      }
+
+      grupos.push(grupoVazio);
+    }
+
+    let indiceGrupo = 0;
+
+    const container = document.getElementById("lista-membros");
+
+    function mostrarGrupo() {
+
+      container.innerHTML = "";
+
+      const grupoAtual = grupos[indiceGrupo];
+
+      grupoAtual.forEach((m, i) => {
+
+        let cor;
+        let badge;
+        let classe;
+
+        if (m.categoria === "Palheta Vazia") {
+
+          cor = "#cccccc";
+          badge = "palheta_membro.png";
+          classe = "";
+
+        } else {
+
+          ({ cor, badge, classe } = getCorEBadge(m));
+
+        }
+
+        const membroDiv = document.createElement("div");
+
+        membroDiv.className = "membro oculto";
+
+        membroDiv.innerHTML = `
+          <div class="membro-left">
+            <img src="${badge}" class="${classe}">
+            <span class="nome" style="color:${cor}">
+              ${abreviarNome(m.nome)}
+            </span>
+          </div>
+
+          <span class="meses" style="color:${cor}">
+            ${m.categoria === "Palheta Vazia" ? "🤠" : m.meses}
+          </span>
+        `;
+
+        container.appendChild(membroDiv);
+
+        setTimeout(() => {
+          membroDiv.classList.add("animado");
+        }, i * 100);
+
+      });
+
+      indiceGrupo = (indiceGrupo + 1) % grupos.length;
+
+    }
+
+    mostrarGrupo();
+
+    setInterval(() => {
+
+      mostrarGrupo();
+
+    }, 600000);
+
+  } catch (e) {
+
+    console.error("Erro ao carregar membros:", e);
+
   }
 
-  carregarMembros();
+}
+
+carregarMembros();
 </script>
+
 </body>
 </html>
-
