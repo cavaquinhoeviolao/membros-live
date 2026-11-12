@@ -1,5 +1,5 @@
 [
-  {"nome": "E...", "categoria": "Palheta de Fogo", "meses": "👻"},
+  {"nome": "...", "categoria": "Palheta de Fogo", "meses": "👻"},
   {"nome": "Wellington COSTA", "categoria": "Palheta de Bronze", "meses": 68},
   {"nome": "Romildo Porcher", "categoria": "Palheta de Bronze", "meses": 55},
   {"nome": "Jesse Junior", "categoria": "Palheta de Bronze", "meses": 48},
@@ -63,10 +63,11 @@
   {"nome": "Leandro Silva", "categoria": "Palheta de Ouro", "meses": 2},
   {"nome": "josias fernandes", "categoria": "Palheta de Bronze", "meses": 2},
   {"nome": "snd_br", "categoria": "Palheta de Ouro", "meses": 1},
-  {"nome": "Vivi Matos", "categoria": "Palheta de Ouro", "meses": 1},
+  {"nome": "Vivi Matos", "categoria": "Palheta de Ouro", "meses": 1},  
   {"nome": "Marcos Antonio", "categoria": "Palheta de Bronze", "meses": 0},
   {"nome": "Giggs Colaneri", "categoria": "Palheta de prata", "meses": 0},
   {"nome": "Evoluir na f.", "categoria": "Palheta de prata", "meses": 0},
   {"nome": "Gil do cavaco", "categoria": "Palheta de prata", "meses": 0},
+  {"nome": "Washington S.", "categoria": "Palheta de Ouro", "meses": 0},  
   {"nome": "Duda Siqueira", "categoria": "Palheta de Bronze", "meses": 0}
 ]
